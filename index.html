@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="style.css">
+    <title>Pw Validatioon</title>
+</head>
+<body>
+    <div class="box">
+        <h3>Create Your Password</h3>
+        <div class="inputBox">
+            <input type="password" name="" id="pswrd" placeholder="Password" autofocus onkeyup="checkPassword(this.value)">
+            <span id="toggleBtn"></span>
+        </div>
+        <div class="validation">
+            <ul>
+                <li id="lower">At least one lowercase character</li>
+                <li id="upper">At least one uppercase character</li>
+                <li id="number">At least one number</li>
+                <li id="special">At least one special character</li>
+                <li id="eight">At least 8 characters</li>
+            </ul>
+        </div>
+        <p>coded by Adrian</p>
+    </div>
+    
+    <script>
+        let pswrd = document.getElementById('pswrd');
+        let toggle = document.getElementById('toggleBtn');
+
+        let lowercase = document.getElementById('lower');
+        let uppercase= document.getElementById('upper');
+        let numberr = document.getElementById('number');
+        let speciall = document.getElementById('special');
+        let eightt = document.getElementById('eight');
+
+        function checkPassword(data){
+            const lower = new RegExp('(?=.*[a-z])');
+            const upper = new RegExp('(?=.*[A-Z])');
+            const number = new RegExp('(?=.*[0-9])');
+            const special = new RegExp('(?=.*[!@#\$%\^&\*])');
+            const eight = new RegExp('(?=.{8,})');
+
+            if(lower.test(data)){
+                lowercase.classList.add('valid');
+            }else{
+                lowercase.classList.remove('valid');
+            }
+
+            if(upper.test(data)){
+                uppercase.classList.add('valid');
+            }else{
+                uppercase.classList.remove('valid');
+            }
+
+            if(special.test(data)){
+                speciall.classList.add('valid');
+            }else{
+                speciall.classList.remove('valid');
+            }
+
+            if(eight.test(data)){
+                eightt.classList.add('valid');
+            }else{
+                eightt.classList.remove('valid');
+            }
+
+            if(number.test(data)){
+                numberr.classList.add('valid');
+            }else{
+                numberr.classList.remove('valid');
+            }
+        }
+
+        toggle.onclick = function(){
+            if(pswrd.type === 'password'){
+                pswrd.setAttribute('type', 'text');
+                toggle.classList.add('hide');
+            }else{
+                pswrd.setAttribute('type', 'password');
+                toggle.classList.remove('hide');
+            }
+        }
+    </script>
+</body>
+</html>
